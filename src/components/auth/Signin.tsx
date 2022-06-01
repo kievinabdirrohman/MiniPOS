@@ -60,25 +60,20 @@ const SignIn: React.FC<{}> = () => {
     },
     validationSchema: SignInSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
-      const signInResponse = await authLogin({
-        email: values.email,
-        password: values.password,
-      });
-      if (signInResponse.error) {
-        setShowAlert(true);
-        setErrorMessage(signInResponse.error.data);
-      } else {
-        expiryAccessToken.setTime(expiryAccessToken.getTime() + 60 * 60 * 1000);
-        setCookie("secure-access", signInResponse.data.accessToken, {
-          secure: true,
-          expires: expiryAccessToken,
-          sameSite: "strict",
-          domain: "localhost",
-        });
-        setShowAlert(false);
-        setSubmitting(false);
-        resetForm();
-      }
+      // const signInResponse = await authLogin({
+      //   email: values.email,
+      //   password: values.password,
+      // });
+      // if (signInResponse.error) {
+      //   setShowAlert(true);
+      //   setErrorMessage(signInResponse.error.data);
+      // } else {
+      //   expiryAccessToken.setTime(expiryAccessToken.getTime() + 60 * 60 * 1000);
+      //   document.cookie = "secure-access=" + signInResponse.data.accessToken + "; expires=" + expiryAccessToken.toUTCString() + "; samesite=strict; path=/; domain=localhost;";
+      //   setShowAlert(false);
+      //   setSubmitting(false);
+      //   resetForm();
+      // }
     },
   });
   return (
