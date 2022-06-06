@@ -22,6 +22,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { SignUpType } from "../../types/auth/Signup.type";
 import { useAuthRegisterMutation } from "../../slices/Auth.slice";
 import signup from "../../images/signup.jpg";
+import OTP from "./OTP";
 
 const expiryAccessToken: Date = new Date();
 
@@ -80,6 +81,10 @@ const SignUp: React.FC<{}> = () => {
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [openOTP, setOpenOTP] = useState(false);
+  const handleCloseOTP = () => {
+    setOpenOTP(false);
+  };
   const handleClickShowPassword = (passwordForm: string) => (event: any) => {
     if (passwordForm === "password") {
       setShowPassword(!showPassword);
@@ -108,21 +113,23 @@ const SignUp: React.FC<{}> = () => {
         setErrorMessage(signUpResponse.error.data);
       } else {
         expiryAccessToken.setTime(expiryAccessToken.getTime() + 60 * 60 * 1000);
-        setCookie("secure-access", signUpResponse.data.accessToken, {
-          secure: true,
-          expires: expiryAccessToken,
-          sameSite: "strict",
-          domain: "localhost",
-        });
+        document.cookie =
+          "secure-access=" +
+          signUpResponse.data.accessToken +
+          "; expires=" +
+          expiryAccessToken.toUTCString() +
+          "; samesite=strict; path=/; domain=localhost;";
         setShowAlert(false);
         setSubmitting(false);
         resetForm();
+        setOpenOTP(true);
       }
     },
   });
   return (
     <>
       <Suspense fallback={<p>Loading...</p>}>
+        {openOTP && <OTP openState={openOTP} closeState={handleCloseOTP} />}
         <Grid container spacing={0}>
           <Grid item lg={6} xs={12} className="xl:px-60 lg:px-20 p-10">
             {showAlert && (

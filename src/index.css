@@ -16,3 +16,7 @@ body {
   backdrop-filter: blur(6.9px);
   -webkit-backdrop-filter: blur(6.9px);
 }
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  text-align: center;
+}

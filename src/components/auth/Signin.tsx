@@ -1,7 +1,6 @@
 import * as yup from "yup";
 import { useState, Suspense } from "react";
 import { useFormik } from "formik";
-import { setCookie } from "typescript-cookie";
 
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
@@ -25,6 +24,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { SignInType } from "../../types/auth/Signin.type";
 import { useAuthLoginMutation } from "../../slices/Auth.slice";
 import signin from "../../images/signin.jpg";
+import OTP from "./OTP";
 
 const expiryAccessToken: Date = new Date();
 
@@ -46,6 +46,10 @@ const SignIn: React.FC<{}> = () => {
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [openOTP, setOpenOTP] = useState(false);
+  const handleCloseOTP = () => {
+    setOpenOTP(false);
+  };
   const handleClickShowPassword = (passwordForm: string) => (event: any) => {
     if (passwordForm === "password") {
       setShowPassword(!showPassword);
@@ -60,25 +64,32 @@ const SignIn: React.FC<{}> = () => {
     },
     validationSchema: SignInSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
-      // const signInResponse = await authLogin({
-      //   email: values.email,
-      //   password: values.password,
-      // });
-      // if (signInResponse.error) {
-      //   setShowAlert(true);
-      //   setErrorMessage(signInResponse.error.data);
-      // } else {
-      //   expiryAccessToken.setTime(expiryAccessToken.getTime() + 60 * 60 * 1000);
-      //   document.cookie = "secure-access=" + signInResponse.data.accessToken + "; expires=" + expiryAccessToken.toUTCString() + "; samesite=strict; path=/; domain=localhost;";
-      //   setShowAlert(false);
-      //   setSubmitting(false);
-      //   resetForm();
-      // }
+      const signInResponse = await authLogin({
+        email: values.email,
+        password: values.password,
+      });
+      if (signInResponse.error) {
+        setShowAlert(true);
+        setErrorMessage(signInResponse.error.data);
+      } else {
+        expiryAccessToken.setTime(expiryAccessToken.getTime() + 60 * 60 * 1000);
+        document.cookie =
+          "secure-access=" +
+          signInResponse.data.accessToken +
+          "; expires=" +
+          expiryAccessToken.toUTCString() +
+          "; samesite=strict; path=/; domain=localhost;";
+        setShowAlert(false);
+        setSubmitting(false);
+        resetForm();
+        setOpenOTP(true);
+      }
     },
   });
   return (
     <>
       <Suspense fallback={<p>Loading...</p>}>
+        {openOTP && <OTP openState={openOTP} closeState={handleCloseOTP} />}
         <Grid container spacing={0}>
           <Grid item lg={6} xs={12} className="xl:px-60 lg:px-20 p-10">
             {showAlert && (
