@@ -1,6 +1,6 @@
-import {useDeferredValue, useState } from "react";
+import { useDeferredValue, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useGetProductsQuery } from "../../slices/Product.slice";
 import {
   DataGrid,
@@ -13,14 +13,16 @@ import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 
 import Layout from "./Layout";
-import { RootState } from "../../Store";
+import { addItem } from "../../slices/Cart.slice";
+// import { RootState } from "../../Store";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [cartItem, addItemToCart] = useState<any>([]);
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  const dispatch = useDispatch();
+  const cartData = useSelector((state: any) => state.cart.products);
+  
 
-  let cart: any[] = [];
   const columns: GridColDef[] = [
     {
       field: "sku",
@@ -53,8 +55,6 @@ const Home = () => {
           const api: GridApi = params.api;
           const thisRow: Record<string, GridCellParams> = {};
 
-          let itemFounded: boolean = false;
-
           api
             .getAllColumns()
             .filter((c) => c.field)
@@ -62,18 +62,7 @@ const Home = () => {
               (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
             );
 
-          for (const key in cart) {
-            if (cart[key].sku === thisRow.sku) {
-              cart[key].amount++;
-              itemFounded = true;
-              break;
-            }
-          }
-          if (!itemFounded) {
-            cart.push({ sku: thisRow.sku, name: thisRow.name, amount: 1 });
-          }
-          addItemToCart(cartItem.concat(cart));
-          console.log(cartItem);
+          dispatch(addItem({ sku: thisRow.sku, name: thisRow.name, amount: 1, price: thisRow.price }));
           return;
         };
 
@@ -82,7 +71,8 @@ const Home = () => {
     },
   ];
 
-  const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery();
+  const {data} = useGetProductsQuery();
+  
   const dataProducts = useDeferredValue(data);
 
   return (
@@ -104,7 +94,7 @@ const Home = () => {
           <Grid item xs={6}>
             <div style={{ height: 500 }}>
               <DataGrid
-                rows={cartItem}
+                rows={cartData}
                 columns={columns}
                 getRowId={(row) => row.sku}
                 disableSelectionOnClick
