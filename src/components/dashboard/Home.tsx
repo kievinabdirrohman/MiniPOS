@@ -1,7 +1,10 @@
-import { useDeferredValue, useState } from "react";
+import { useDeferredValue, useState, memo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetProductsQuery } from "../../slices/Product.slice";
+import {
+  useGetProductsQuery,
+  selectAllProducts,
+} from "../../slices/Product.slice";
 import {
   DataGrid,
   GridColDef,
@@ -11,9 +14,15 @@ import {
 import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 
 import Layout from "./Layout";
-import { addItem } from "../../slices/Cart.slice";
+import {
+  addItem,
+  sliceItem,
+  removeItem,
+  clearItems,
+} from "../../slices/Cart.slice";
 // import { RootState } from "../../Store";
 
 const Home = () => {
@@ -21,7 +30,9 @@ const Home = () => {
   // const location = useLocation();
   const dispatch = useDispatch();
   const cartData = useSelector((state: any) => state.cart.products);
-  
+  const totalData = useSelector((state: any) => state.cart.totalItem);
+  const totalPurchase = useSelector((state: any) => state.cart.totalPrice);
+  const [dataPaid, setDataPaid] = useState<number>(0);
 
   const columns: GridColDef[] = [
     {
@@ -62,7 +73,15 @@ const Home = () => {
               (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
             );
 
-          dispatch(addItem({ sku: thisRow.sku, name: thisRow.name, amount: 1, price: thisRow.price }));
+          dispatch(
+            addItem({
+              sku: thisRow.sku,
+              name: thisRow.name,
+              amount: 1,
+              price: thisRow.price,
+              maxItem: thisRow.stock,
+            })
+          );
           return;
         };
 
@@ -71,18 +90,105 @@ const Home = () => {
     },
   ];
 
-  const {data} = useGetProductsQuery();
-  
-  const dataProducts = useDeferredValue(data);
+  const columnsCart: GridColDef[] = [
+    {
+      field: "sku",
+      headerName: "SKU",
+      type: "string",
+    },
+    {
+      field: "name",
+      headerName: "Name",
+      type: "string",
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      type: "number",
+    },
+    {
+      field: "price",
+      headerName: "Price",
+      type: "number",
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      sortable: false,
+      renderCell: (params) => {
+        const sliceItemData = (e: any) => {
+          e.stopPropagation();
+          const api: GridApi = params.api;
+          const thisRow: Record<string, GridCellParams> = {};
+          api
+            .getAllColumns()
+            .filter((c) => c.field)
+            .forEach(
+              (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+            );
+          dispatch(
+            sliceItem({
+              sku: thisRow.sku,
+              price: thisRow.price,
+              amount: thisRow.amount,
+            })
+          );
+          return;
+        };
+        const removeItemData = (e: any) => {
+          e.stopPropagation();
+          const api: GridApi = params.api;
+          const thisRow: Record<string, GridCellParams> = {};
+          api
+            .getAllColumns()
+            .filter((c) => c.field)
+            .forEach(
+              (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+            );
+          dispatch(
+            removeItem({
+              sku: thisRow.sku,
+              price: thisRow.price,
+              amount: thisRow.amount,
+            })
+          );
+          return;
+        };
+
+        return (
+          <>
+            <Button onClick={sliceItemData}>Slice</Button>
+            <Button onClick={removeItemData}>Remove</Button>
+          </>
+        );
+      },
+    },
+  ];
+
+  const payProducts = () => {
+    const invoice = {
+      products: cartData,
+      totalProduct: totalData,
+      totalPrice: totalPurchase,
+      paid: dataPaid,
+      change: dataPaid - totalPurchase,
+    };
+    dispatch(clearItems());
+    setDataPaid(0);
+    console.log(invoice);
+  };
+
+  useGetProductsQuery();
+  const getAllProducts = useSelector(selectAllProducts);
 
   return (
     <Layout>
-      {dataProducts ? (
+      {Array.isArray(getAllProducts) && getAllProducts.length > 0 ? (
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <div style={{ height: 500 }}>
               <DataGrid
-                rows={dataProducts}
+                rows={getAllProducts}
                 columns={columns}
                 pageSize={10}
                 rowsPerPageOptions={[10]}
@@ -95,10 +201,25 @@ const Home = () => {
             <div style={{ height: 500 }}>
               <DataGrid
                 rows={cartData}
-                columns={columns}
+                columns={columnsCart}
+                pageSize={10}
                 getRowId={(row) => row.sku}
                 disableSelectionOnClick
               />
+              <p>Total Item: {totalData}</p>
+              <p>Total Price: {totalPurchase}</p>
+              <TextField
+                autoComplete="off"
+                fullWidth
+                type="number"
+                id="paid"
+                name="paid"
+                label="paid"
+                variant="standard"
+                value={dataPaid}
+                onChange={(e: any) => setDataPaid(e.target.value)}
+              />
+              <Button onClick={payProducts}>Purchase</Button>
             </div>
           </Grid>
         </Grid>
