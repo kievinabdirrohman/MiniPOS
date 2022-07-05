@@ -1,7 +1,7 @@
 import * as yup from "yup";
-import { useState, Suspense } from "react";
+import { useState, Suspense, memo } from "react";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { setCookie } from "typescript-cookie";
 
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
@@ -21,6 +21,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 
 import { SignUpType } from "../../types/auth/Signup.type";
 import { useAuthRegisterMutation } from "../../slices/Auth.slice";
+import { setCredentials } from "../../slices/AuthToken.slice";
 import signup from "../../images/signup.jpg";
 import OTP from "./OTP";
 
@@ -75,7 +76,7 @@ const SignUpSchema: yup.SchemaOf<SignUpType> = yup
   })
   .defined();
 
-const SignUp: React.FC<{}> = () => {
+const SignUp: React.FC<{}> = memo(() => {
   const [authRegister, { isLoading }] = useAuthRegisterMutation();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
@@ -85,6 +86,7 @@ const SignUp: React.FC<{}> = () => {
   const handleCloseOTP = () => {
     setOpenOTP(false);
   };
+  const dispatch = useDispatch();
   const handleClickShowPassword = (passwordForm: string) => (event: any) => {
     if (passwordForm === "password") {
       setShowPassword(!showPassword);
@@ -122,6 +124,7 @@ const SignUp: React.FC<{}> = () => {
         setShowAlert(false);
         setSubmitting(false);
         resetForm();
+        dispatch(setCredentials({ token: signUpResponse.data.accessToken }));
         setOpenOTP(true);
       }
     },
@@ -329,6 +332,6 @@ const SignUp: React.FC<{}> = () => {
       </Suspense>
     </>
   );
-};
+});
 
 export default SignUp;

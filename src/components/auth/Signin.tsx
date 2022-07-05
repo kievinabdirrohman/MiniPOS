@@ -1,5 +1,6 @@
 import * as yup from "yup";
-import { useState, Suspense } from "react";
+import { useState, Suspense, memo } from "react";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 
 import Stack from "@mui/material/Stack";
@@ -23,6 +24,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 
 import { SignInType } from "../../types/auth/Signin.type";
 import { useAuthLoginMutation } from "../../slices/Auth.slice";
+import { setCredentials } from "../../slices/AuthToken.slice";
 import signin from "../../images/signin.jpg";
 import OTP from "./OTP";
 
@@ -50,6 +52,7 @@ const SignIn: React.FC<{}> = () => {
   const handleCloseOTP = () => {
     setOpenOTP(false);
   };
+  const dispatch = useDispatch();
   const handleClickShowPassword = (passwordForm: string) => (event: any) => {
     if (passwordForm === "password") {
       setShowPassword(!showPassword);
@@ -78,10 +81,11 @@ const SignIn: React.FC<{}> = () => {
           signInResponse.data.accessToken +
           "; expires=" +
           expiryAccessToken.toUTCString() +
-          "; samesite=strict; path=/; domain=localhost;";
+          "; samesite=strict; path=/; domain=localhost; secure=true;";
         setShowAlert(false);
         setSubmitting(false);
         resetForm();
+        dispatch(setCredentials({token: signInResponse.data.accessToken}));
         setOpenOTP(true);
       }
     },

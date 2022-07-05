@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, memo } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -28,7 +28,7 @@ type Props = {
   window?: () => Window;
 };
 
-const Layout: React.FC<Props> = (props: Props) => {
+const Layout: React.FC<Props> = memo((props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -50,16 +50,6 @@ const Layout: React.FC<Props> = (props: Props) => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  // const { IsError, IsLoading, User } = useSelector(
-  //   (state: RootState) => state.auth
-  // );
-
-  // useEffect(() => {
-  //   if (IsError) {
-  //     navigate("/", { state: { from: location }, replace: true });
-  //   }
-  // }, []);
 
   const drawer = (
     <>
@@ -207,6 +197,6 @@ const Layout: React.FC<Props> = (props: Props) => {
       </Box>
     </Box>
   );
-};
+});
 
 export default Layout;
