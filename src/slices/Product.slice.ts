@@ -12,7 +12,7 @@ const initialState = productsAdapter.getInitialState();
 export const productsApiSlice: any = apiPrivateSlice.injectEndpoints({
   endpoints: (builder: any) => ({
     getProducts: builder.query({
-      query: () => "/660/products",
+      query: () => "/660/products?_sort=sku&_order=asc",
       transformResponse: (responseData: any) => {
         return productsAdapter.setAll(initialState, responseData);
       },
@@ -21,7 +21,7 @@ export const productsApiSlice: any = apiPrivateSlice.injectEndpoints({
     }),
     addProduct: builder.mutation({
       query: (dataProduct: any) => ({
-        url: "/products",
+        url: "/660/products",
         method: "POST",
         body: {
           id: uuid(),
@@ -32,7 +32,7 @@ export const productsApiSlice: any = apiPrivateSlice.injectEndpoints({
     }),
     updateProduct: builder.mutation({
       query: (dataProduct: any) => ({
-        url: `/products/${dataProduct.id}`,
+        url: `/660/products/${dataProduct.id}`,
         method: "PATCH",
         body: {
           ...dataProduct,
@@ -44,7 +44,7 @@ export const productsApiSlice: any = apiPrivateSlice.injectEndpoints({
     }),
     deleteProduct: builder.mutation({
       query: (id: string) => ({
-        url: `/products/${id}`,
+        url: `/660/products/${id}`,
         method: "DELETE",
         body: { id },
       }),

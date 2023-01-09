@@ -11,7 +11,7 @@ const initialState = invoicesAdapter.getInitialState();
 export const invoicesApiSlice: any = apiPrivateSlice.injectEndpoints({
   endpoints: (builder: any) => ({
     getInvoices: builder.query({
-      query: () => "/invoices",
+      query: () => "/660/invoices",
       transformResponse: (responseData: any) => {
         return invoicesAdapter.setAll(initialState, responseData);
       },
@@ -20,7 +20,7 @@ export const invoicesApiSlice: any = apiPrivateSlice.injectEndpoints({
     }),
     createInvoice: builder.mutation({
       query: (cartItems: any) => ({
-        url: "/invoices",
+        url: "/660/invoices",
         method: "POST",
         body: {
           id: uuid(),
@@ -46,7 +46,7 @@ export const {
   selectById: selectInvoiceById,
   selectIds: selectInvoiceIds,
 } = invoicesAdapter.getSelectors(
-  (state: any) => selectInvoicesResult(state) ?? initialState
+  (state: any) => selectInvoicesData(state) ?? initialState
 );
 
 export const { useCreateInvoiceMutation, useGetInvoicesQuery } = invoicesApiSlice;

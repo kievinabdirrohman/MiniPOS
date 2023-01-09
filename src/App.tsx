@@ -1,8 +1,11 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import SignUp from "./components/auth/Signup";
 import SignIn from "./components/auth/Signin";
 import Home from "./components/dashboard/Home";
+import ProductHome from "./components/product/Product";
+import CustomerHome from "./components/customer/Customer";
 import { PrivateOutlet, PublicOutlet } from "./components/AuthMiddleware";
 
 function App() {
@@ -16,6 +19,8 @@ function App() {
           </Route>
           <Route element={<PrivateOutlet />}>
             <Route path="home" element={<Home />} />
+            <Route path="product" element={<ProductHome />} />
+            <Route path="customer" element={<CustomerHome />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -9723,14 +9723,6 @@
       "purchase": 81169
     },
     {
-      "id": "abb9017b-b27f-44e3-b24f-0947ce667f72",
-      "sku": "au.gov.privacy.Asoka",
-      "name": "Soup - Campbells Beef Noodle",
-      "stock": 454,
-      "price": 66460,
-      "purchase": 64161
-    },
-    {
       "id": "c2e102ad-f161-4338-8b8c-cbaf6d5d1f29",
       "sku": "cn.gov.miibeian.Otcom",
       "name": "Fiddlehead - Frozen",
@@ -10145,14 +10137,6 @@
       "stock": 957,
       "price": 33476,
       "purchase": 26826
-    },
-    {
-      "id": "31d84116-b033-4f36-a344-cb4e43466fa1",
-      "sku": "au.gov.oaic.Cardguard",
-      "name": "Tea - Herbal - 6 Asst",
-      "stock": 636,
-      "price": 30378,
-      "purchase": 58304
     },
     {
       "id": "14549b4f-5572-4d7e-913f-cb4a1b57303d",
@@ -10793,14 +10777,6 @@
       "stock": 876,
       "price": 63531,
       "purchase": 51845
-    },
-    {
-      "id": "310d3712-07bd-4d43-bf29-0afe20063fde",
-      "sku": "au.gov.privacy.Cardguard",
-      "name": "Bread - Crusty Italian Poly",
-      "stock": 944,
-      "price": 87504,
-      "purchase": 40914
     },
     {
       "id": "bccf91f3-9ea1-49a5-92a0-91a64a63154a",
@@ -11883,14 +11859,6 @@
       "purchase": 51676
     },
     {
-      "id": "7599633e-5cad-46b9-8baa-ded00f663e44",
-      "sku": "au.gov.oaic.Vagram",
-      "name": "Cake - Miini Cheesecake Cherry",
-      "stock": 397,
-      "price": 99254,
-      "purchase": 25034
-    },
-    {
       "id": "17f7e88a-7893-4929-8ae9-4f39e304bdd6",
       "sku": "com.indiatimes.Quo Lux",
       "name": "Tuna - Canned, Flaked, Light",
@@ -12705,14 +12673,6 @@
       "stock": 889,
       "price": 27973,
       "purchase": 74832
-    },
-    {
-      "id": "731c2e40-cbe1-4bc8-bcec-ddd29c8adcbf",
-      "sku": "be.youtu.Gembucket",
-      "name": "Wine - Rosso Toscano Igt",
-      "stock": 229,
-      "price": 19359,
-      "purchase": 42520
     },
     {
       "id": "0be231c4-84d7-4513-9472-ec84d4fc92a8",
@@ -14331,14 +14291,6 @@
       "purchase": 44725
     },
     {
-      "id": "32d1e3b4-be7b-498e-ae37-99d744354f2d",
-      "sku": "au.gov.nsw.Span",
-      "name": "Oil - Shortening - All - Purpose",
-      "stock": 246,
-      "price": 24462,
-      "purchase": 41604
-    },
-    {
       "id": "0787b460-3fe8-45c6-b925-ee12fc135a41",
       "sku": "com.buzzfeed.Treeflex",
       "name": "Roe - Lump Fish, Red",
@@ -14457,14 +14409,6 @@
       "stock": 542,
       "price": 40243,
       "purchase": 46746
-    },
-    {
-      "id": "01b3dff9-ba3d-4e0b-bd0b-b079819d58db",
-      "sku": "au.gov.nsw.Trippledex",
-      "name": "Cheese - Parmesan Grated",
-      "stock": 866,
-      "price": 96036,
-      "purchase": 68178
     },
     {
       "id": "857ac1a3-4313-492a-aa71-ad1017392951",
@@ -14593,14 +14537,6 @@
       "stock": 908,
       "price": 164,
       "purchase": 39835
-    },
-    {
-      "id": "0d3aede4-3f62-402f-90d9-c568ea245086",
-      "sku": "ca.google.Rank",
-      "name": "Oil - Sunflower",
-      "stock": 9,
-      "price": 25949,
-      "purchase": 66890
     },
     {
       "id": "a30ab26b-dfba-4cd1-b977-0c214dd0b042",
@@ -14737,14 +14673,6 @@
       "stock": 370,
       "price": 81976,
       "purchase": 64051
-    },
-    {
-      "id": "55baf68b-cb21-46d1-9202-8b0a3fc82a2d",
-      "sku": "au.com.smh.Voltsillam",
-      "name": "Broccoli - Fresh",
-      "stock": 123,
-      "price": 17364,
-      "purchase": 80027
     },
     {
       "id": "4fe2628d-c5d0-444d-8de8-4142556749af",
@@ -16139,14 +16067,6 @@
       "purchase": 98891
     },
     {
-      "id": "83469259-62c6-4113-b2c7-831747064687",
-      "sku": "au.com.google.Lotlux",
-      "name": "Bread - White Mini Epi",
-      "stock": 580,
-      "price": 2127,
-      "purchase": 40990
-    },
-    {
       "id": "242d11f0-30f2-4e2b-a0f2-3bd04a5948c8",
       "sku": "com.nationalgeographic.Tampflex",
       "name": "Lotus Root",
@@ -16587,14 +16507,6 @@
       "purchase": 19199
     },
     {
-      "id": "1515f504-6597-46a9-9c25-3e81d03857d8",
-      "sku": "au.org.auda.Solarbreeze",
-      "name": "Halibut - Whole, Fresh",
-      "stock": 621,
-      "price": 93904,
-      "purchase": 23419
-    },
-    {
       "id": "a4a1ae2c-3f05-4992-81c7-240137083c86",
       "sku": "com.nationalgeographic.Sub-Ex",
       "name": "Coffee Beans - Chocolate",
@@ -16763,14 +16675,6 @@
       "purchase": 88415
     },
     {
-      "id": "8914eaa2-8748-4b52-9a3e-5b54aba9bdab",
-      "sku": "au.gov.privacy.Quo Lux",
-      "name": "Bread - Sour Batard",
-      "stock": 709,
-      "price": 58929,
-      "purchase": 81779
-    },
-    {
       "id": "9f222f49-8a61-4249-bb5e-338b3611269e",
       "sku": "edu.si.Tres-Zap",
       "name": "Remy Red Berry Infusion",
@@ -16820,11 +16724,11 @@
     },
     {
       "id": "61bec676-a264-4a87-b53c-59819a4d4fea",
-      "sku": "be.youtu.Sub-Ex",
-      "name": "Bacardi Mojito",
-      "stock": 804,
-      "price": 34409,
-      "purchase": 97774
+      "sku": "sssaaaass",
+      "name": "ffdddfffd",
+      "stock": 333,
+      "price": 444444,
+      "purchase": 5555544
     },
     {
       "id": "c241dab8-1fcf-4de9-a6f7-01e2ff7578dd",
@@ -17041,6 +16945,54 @@
       "stock": 348,
       "price": 40889,
       "purchase": 62993
+    },
+    {
+      "id": "e3dbbe1f-c582-4777-b3bd-790accb2fb85",
+      "sku": "a1a1a1a1a1",
+      "name": "swdwdwd",
+      "stock": 999,
+      "price": 1234,
+      "purchase": 6789
+    },
+    {
+      "id": "3c86ef8b-130e-42eb-93a6-113d986a96b5",
+      "sku": "aaaaa",
+      "name": "bbbbb",
+      "stock": 9,
+      "price": 8,
+      "purchase": 7
+    },
+    {
+      "id": "e5af0823-80f4-4bbe-a852-5ae70c06e346",
+      "sku": "1111111",
+      "name": "1111ssssss",
+      "stock": 88,
+      "price": 0,
+      "purchase": 0
+    },
+    {
+      "id": "51a4f0fd-94fc-4aa4-b196-7aadf6f57d81",
+      "sku": "22222",
+      "name": "eerrrr",
+      "stock": 4,
+      "price": 3,
+      "purchase": 4
+    },
+    {
+      "id": "b5e0b689-8890-433f-82db-31753b21a109",
+      "sku": "aabaaaba",
+      "name": "aababa",
+      "stock": 4,
+      "price": 0,
+      "purchase": 0
+    },
+    {
+      "id": "45d15873-32fe-4700-9b41-937b8998e4e9",
+      "sku": "jkbkjhbjknj",
+      "name": "jnjnjn",
+      "stock": 0,
+      "price": 0,
+      "purchase": 0
     }
   ],
   "customers": [
@@ -17065,26 +17017,14 @@
     {
       "id": "382098e7-f0ff-43a2-8cb8-79ef96b7e00c",
       "full_name": "Crissy Spofford",
-      "phone_number": "+98-497-246-3993",
-      "address": "3 Lunder Road"
-    },
-    {
-      "id": "fc64e7ad-5ef1-4ce0-a489-315713251681",
-      "full_name": "Goldia Leemans",
-      "phone_number": "+63-838-576-4808",
-      "address": "475 Lien Hill"
+      "phone_number": "+9849724639",
+      "address": "44 Lunder Road"
     },
     {
       "id": "b2be5cd9-15f9-47a9-9509-457d3af03139",
-      "full_name": "Hertha Longford",
-      "phone_number": "+51-259-904-5106",
+      "full_name": "Herthdda Longford",
+      "phone_number": "+512599045106",
       "address": "0 Fallview Crossing"
-    },
-    {
-      "id": "0a7b1a41-5356-4da7-977e-f09e1132f91a",
-      "full_name": "Philip Licquorish",
-      "phone_number": "+62-306-472-1018",
-      "address": "38 Jay Parkway"
     },
     {
       "id": "0f321f8e-9a02-4320-bc62-6c0aef8c5ee9",
@@ -17127,6 +17067,24 @@
       "full_name": "Reider Godsafe",
       "phone_number": "+62-992-646-4194",
       "address": "33823 Trailsway Crossing"
+    },
+    {
+      "id": "eef76b92-7ebc-4538-8c7e-19e88542488b",
+      "full_name": "aaaaa",
+      "phone_number": "+2883849492",
+      "address": "nkxdbkfjgdg"
+    },
+    {
+      "id": "af2a2c07-1f66-43df-abdc-d74ff05883a9",
+      "full_name": "aaaaaaaa",
+      "phone_number": "+003939399499",
+      "address": "knbxfgjkdg"
+    },
+    {
+      "id": "806a4a8d-2ddd-4cfa-b350-a0e7500353a8",
+      "full_name": "Aaaaaa",
+      "phone_number": "+09384984944",
+      "address": "kdjfgnfdkjgdr rgkjdnfdkgdlgdf"
     }
   ],
   "invoices": [
@@ -17370,6 +17328,43 @@
       "profit": 134118,
       "isPaid": false,
       "createdAt": "2022-07-05T14:25:14.471Z"
+    },
+    {
+      "id": "9be86373-9115-4605-8413-26b3fa692820",
+      "products": [
+        {
+          "sku": "a1a1a1a1a1",
+          "name": "swdwdwd",
+          "amount": 1,
+          "price": 1234,
+          "profit": -5555,
+          "maxItem": 999
+        },
+        {
+          "sku": "aaaaa",
+          "name": "bbbbb",
+          "amount": 1,
+          "price": 8,
+          "profit": 1,
+          "maxItem": 9
+        },
+        {
+          "sku": "aabaaaba",
+          "name": "aababa",
+          "amount": 1,
+          "price": 0,
+          "profit": 0,
+          "maxItem": 4
+        }
+      ],
+      "totalProduct": 3,
+      "totalPrice": 1242,
+      "customer": "Reider Godsafe",
+      "paid": 0,
+      "change": -1242,
+      "profit": -5554,
+      "isPaid": false,
+      "createdAt": "2022-07-12T01:44:13.371Z"
     }
   ]
 }

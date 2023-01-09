@@ -11,7 +11,7 @@ const initialState = customersAdapter.getInitialState();
 export const customersApiSlice: any = apiPrivateSlice.injectEndpoints({
   endpoints: (builder: any) => ({
     getCustomers: builder.query({
-      query: () => "/customers",
+      query: () => "/660/customers?_sort=full_name&_order=asc",
       transformResponse: (responseData: any) => {
         return customersAdapter.setAll(initialState, responseData);
       },
@@ -20,7 +20,7 @@ export const customersApiSlice: any = apiPrivateSlice.injectEndpoints({
     }),
     addCustomer: builder.mutation({
       query: (dataCustomer: any) => ({
-        url: "/customers",
+        url: "/660/customers",
         method: "POST",
         body: {
           id: uuid(),
@@ -31,7 +31,7 @@ export const customersApiSlice: any = apiPrivateSlice.injectEndpoints({
     }),
     updateCustomer: builder.mutation({
       query: (dataCustomer: any) => ({
-        url: `/customers/${dataCustomer.id}`,
+        url: `/660/customers/${dataCustomer.id}`,
         method: "PATCH",
         body: {
           ...dataCustomer,
@@ -43,7 +43,7 @@ export const customersApiSlice: any = apiPrivateSlice.injectEndpoints({
     }),
     deleteCustomer: builder.mutation({
       query: (id: string) => ({
-        url: `/customers/${id}`,
+        url: `/660/customers/${id}`,
         method: "DELETE",
         body: { id },
       }),

@@ -1,9 +1,11 @@
+import React from "react";
 import { useDeferredValue, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   useGetProductsQuery,
   selectAllProducts,
+  useDeleteProductMutation,
 } from "../../slices/Product.slice";
 import {
   useGetCustomersQuery,
@@ -44,6 +46,7 @@ const Home = () => {
   const totalProfit = useSelector((state: any) => state.cart.totalProfit);
   const [dataPaid, setDataPaid] = useState<number>(0);
   const [createInvoice] = useCreateInvoiceMutation();
+  const [deleteProduct, { isLoading: onDeleteProduct }] = useDeleteProductMutation();
   const [customer, chooseCustomer] = useState<string>("");
   const [filterTerm, setFilterTerm] = useState<string>("");
 
@@ -52,6 +55,11 @@ const Home = () => {
   };
 
   const columns: GridColDef[] = [
+    {
+      field: "id",
+      headerName: "ID",
+      type: "string",
+    },
     {
       field: "sku",
       headerName: "SKU",
@@ -110,7 +118,11 @@ const Home = () => {
           return;
         };
 
-        return <Button onClick={onClick}>Add to Cart</Button>;
+        return (
+          <>
+            <Button onClick={onClick}>Add to Cart</Button>
+          </>
+        );
       },
     },
   ];
@@ -210,7 +222,7 @@ const Home = () => {
       alert("Paid must be positive value");
       return false;
     }
-    if (customer == "") {
+    if (customer === "") {
       alert("Customer is Required");
       return false;
     }
@@ -252,7 +264,7 @@ const Home = () => {
 
   return (
     <Layout>
-      {!productLoading && !customerLoading ? (
+      {!productLoading && !customerLoading && !onDeleteProduct ? (
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <div style={{ height: 500 }}>
